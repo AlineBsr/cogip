@@ -10,4 +10,10 @@
             echo 'It works!';
         }
 
+        public function getOne(){
+            $this->findModel('Company');
+            $companies = $this->Company->getOne();
+            var_dump($companies);
+        }
+
     }

@@ -14,6 +14,7 @@
         $action = isset($parameters[1]) ? $parameters[1] : 'route';
 
         require_once(ROOT.'controllers/'.$controller.'.php');
+        
 
         $controller = new $controller();
 
