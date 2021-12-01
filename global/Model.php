@@ -48,14 +48,14 @@
             $sql = "DELETE FROM " .$this->table. " WHERE id=" .$this->id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
-            return "l'élément dont l'id était ".$this->id. " à bien été suprimé.";
+            return "l'élément dont l'id était ".$this->id. " a bien été supprimé.";
         }
         
         public function update(){
             $sql = "UPDATE " .$this->table. " SET ". $this->column. " =".$this->updateValue. " WHERE id=" .$this->id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
-            return "l'élément dont l'id était ".$this->id. " à bien été modifié.";
+            return "l'élément dont l'id était ".$this->id. " a bien été modifié.";
         }
 
     }
