@@ -1,34 +1,33 @@
-<?php 
+<?php
 
-    // var_dump($_GET);
-    define('ROOT', str_replace('route.php', '' , $_SERVER['SCRIPT_FILENAME']));
+// var_dump($_GET);
 
-    $parameters = explode('/', $_GET['u']);
-    // var_dump($_SERVER['SCRIPT_FILENAME']);
-    // var_dump($parameters);
+define('ROOT', str_replace('route.php', '', $_SERVER['SCRIPT_FILENAME']));
+$parameters = explode('/', $_GET['u']);
 
-    if($parameters[0] != ""){
+// var_dump($parameters);
 
-        $controller = ucfirst($parameters[0]);
-        $action = isset($parameters[1]) ? $parameters[1] : 'route';
+if ($parameters[0] != "") {
 
-        require_once(ROOT.'controllers/'.$controller.'.php');
-        
+    $controller = ucfirst($parameters[0]);
+    $action = isset($parameters[1]) ? $parameters[1] : 'route';
 
-        $controller = new $controller();
+    require_once(ROOT . 'controllers/' . $controller . '.php');
 
-        if(method_exists($controller,$action)){
-            $controller->$action();
-        } 
-        else{
-            http_response_code(404);
-            echo "Impossible de trouver l'action demandée.";
-        } 
-    }
-    else {
+
+    $controller = new $controller();
+
+    if (method_exists($controller, $action)) {
+        isset($parameters[2]) ? call_user_func([$controller, $action], $parameters[2]) : $controller->$action();
+    } else {
         http_response_code(404);
-        echo "Impossible de trouver la page demandée.";
+        echo "Impossible de trouver l'action demandé.";
     }
-
-    // var_dump($parameters[0]);
-    // var_dump($parameters[1]);
+} else {
+    http_response_code(404);
+    echo "Impossible de trouver la page demandé.";
+}
+// phpinfo();
+// var_dump(PHP_OS);
+// var_dump($parameters[0]);
+// var_dump($parameters[1]);

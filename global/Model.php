@@ -4,19 +4,18 @@
         private $dbName = "cogip_app";
         protected $user = 'root';
         protected $password = '';
+        protected $password_unix = 'root';
 
         protected $connectionString;
 
         public $table;
-        public $id;
         public $column;
         public $updateValue;
-        public $insertValue;
 
         public function getConnection(){
             $this->connectionString = null;
             try{
-                $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password);
+                $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password_unix);
             }
             catch(PDOException $exeption){
                 $exeption->getMessage();
@@ -30,18 +29,20 @@
             return $query->fetchall();
         }
 
-        public function getOne(){
-            $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$this->id;
+        public function getOne(int $id){
+            $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetch();
         }
 
-        public function add(){
-            $sql = "INSERT INTO " .$this->table. "VALUES (".$this->insertValue.")";
+        public function add(array $listColumn, array $listValue){
+            $columnToStr = implode(',', $listColumn);
+            $valueToStr = implode(',',$listValue);
+            $sql = "INSERT INTO " .$this->table. "(".$columnToStr.") VALUES (".$valueToStr.")";
             $query = $this->connectionString->prepare($sql);
             $query->execute();
-            return $query->fetch();
+            return $query;
         }
 
         public function delete(){

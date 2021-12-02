@@ -1,42 +1,37 @@
 <?php
 require_once(ROOT . '/global/Controller.php');
 
-class PeopleController extends Controller
+class PeopleController extends Controller 
 {
-    public function getOne()
-    {
+    public function getOne(int $id) {       
         $this->findModel('People');
-        $people = $this->People->getOne();
-        echo $people['id'];
-
-
+        $person = $this->People->getOne($id);
+        $this->render('getOne.php', ['person' => $person]);
     }
 
-    public function afficher()
-    {
+    public function getAll() {
         $this->findModel('People');
         $people = $this->People->getAll();
-        // var_dump(get_class($this));
-        // var_dump($people);
-        $this->render('afficher', ['people'=>$people]);
-
+        $this->render('getAll.php', ['people' => $people]);
     }
 
-    public function  add()
+    public function  formAddPerson()
     {
         $this->findModel('People');
-        $people = $this->People->add();
-        var_dump($people);
+        // $person = $this->People->add();
+        // var_dump($person);
+        $this->render('formAddPerson.php', ['']);
     }
     
-    public function delete(){
-        $this->findModel('People');
-        $people = $this->People->delete();   
-    }
+    
+    
+    // public function delete(){
+    //     $this->findModel('People');
+    //     $people = $this->People->delete();   
+    // }
 
-    public function update(){
-        $this->findModel('People');
-        $people = $this->People->update();
-    }
+    // public function update(){
+    //     $this->findModel('People');
+    //     $people = $this->People->update();
+    // }
 }
-

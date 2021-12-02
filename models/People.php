@@ -4,9 +4,8 @@
     class People extends Model{
         public function __construct()
         {
-            $this->id = 3;
+            $this->id = 1;
             $this->table = 'people';
             $this->getConnection();
         }
     }
-
