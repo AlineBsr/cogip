@@ -1,11 +1,10 @@
 <?php
     require_once(ROOT.'/global/Model.php');
 
-    class Invoice extends Model{
+    class Invoice extends Model {
         public function __construct()
         {
-            $this->table = "invoice";
-            $this->getConnection();
-            $this -> add();
+            $this -> table = "invoice";
+            $this -> getConnection();
         }
     }

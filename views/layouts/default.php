@@ -7,5 +7,5 @@
     ?>
 </main>
 <footer>
-    <h3>Vive la cogip!</h3>
+    <h3>Vive la Cogip !</h3>
 </footer>
