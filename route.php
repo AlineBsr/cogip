@@ -1,11 +1,10 @@
 <?php 
 
     // var_dump($_GET);
-
     define('ROOT', str_replace('route.php', '' , $_SERVER['SCRIPT_FILENAME']));
 
     $parameters = explode('/', $_GET['u']);
-
+    // var_dump($_SERVER['SCRIPT_FILENAME']);
     // var_dump($parameters);
 
     if($parameters[0] != ""){
@@ -22,12 +21,12 @@
         } 
         else{
             http_response_code(404);
-            echo "Impossible de trouver l'action demandé.";
+            echo "Impossible de trouver l'action demandée.";
         } 
     }
     else {
         http_response_code(404);
-        echo "Impossible de trouver la page demandé.";
+        echo "Impossible de trouver la page demandée.";
     }
 
     // var_dump($parameters[0]);
