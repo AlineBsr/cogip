@@ -19,7 +19,7 @@
         $controller = new $controller();
 
         if(method_exists($controller,$action)){
-            $controller->$action();
+            isset($parameters[2]) ? call_user_func([$controller, $action], $parameters[2]) : $controller->$action();
         } 
         else{
             http_response_code(404);
@@ -31,5 +31,7 @@
         echo "Impossible de trouver la page demandé.";
     }
 
+    // phpinfo();
+    // var_dump(PHP_OS);
     // var_dump($parameters[0]);
     // var_dump($parameters[1]);

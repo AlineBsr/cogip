@@ -8,10 +8,8 @@
         protected $connectionString;
 
         public $table;
-        public $id;
         public $column;
         public $updateValue;
-        public $insertValue;
 
         public function getConnection(){
             $this->connectionString = null;
@@ -30,18 +28,20 @@
             return $query->fetchall();
         }
 
-        public function getOne(){
-            $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$this->id;
+        public function getOne(int $id){
+            $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetch();
         }
 
-        public function add(){
-            $sql = "INSERT INTO " .$this->table. "VALUES (".$this->insertValue.")";
+        public function add(array $listColumn, array $listValue){
+            $columnToStr = implode(',', $listColumn);
+            $valueToStr = implode(',',$listValue);
+            $sql = "INSERT INTO " .$this->table. "(".$columnToStr.") VALUES (".$valueToStr.")";
             $query = $this->connectionString->prepare($sql);
             $query->execute();
-            return $query->fetch();
+            return $query;
         }
 
         public function delete(){

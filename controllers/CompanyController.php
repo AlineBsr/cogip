@@ -2,18 +2,30 @@
     require_once(ROOT.'/global/Controller.php');
 
     class CompanyController extends Controller{
+
         
-        public function doesItWork(){
+        public function listAll(){
             $this->findModel('Company');
             $companies = $this->Company->getAll();
-            var_dump($companies);
-            echo 'It works!';
+            $this->render('listAll', ['companies' => $companies ]);
         }
 
-        public function getOne(){
+        public function detail(int $id){
             $this->findModel('Company');
-            $companies = $this->Company->getOne();
-            var_dump($companies);
+            $companie = $this->Company->getOne($id);
+            $this->render('detail', ['companie' => $companie]);
+        }
+
+        public function add(){
+            $this->findModel('Company');
+            $newCompany = array();
+            $listeColumn = ['name','address','country','vat','phone'];
+            $this->render('add', ['newCompany' => $newCompany]);
+            if(isset($_POST["name"])){
+                $newCompany = [$_POST["name"],$_POST["address"],$_POST["country"],$_POST["vat"],$_POST["phone"]];
+                var_dump($newCompany);
+                $this->Company->add($listeColumn,$newCompany);
+            }
         }
 
     }
