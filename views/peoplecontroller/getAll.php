@@ -1,7 +1,9 @@
 <h1>Liste des contacts</h1>
+<button  onclick="window.location.href='./addPerson'">Ajouter un contact</button>
+<br/>    
 <table>
     <tr>
-        <th scope="col">ID</th>
+        <th scope="col"></th>
         <th scope="col">Prénom</th>
         <th scope="col">Nom</th>
         <th scope="col">Téléphone</th>
@@ -11,7 +13,7 @@
 
     <?php
     foreach ($people as $person) {
-        echo '<tr> <td><a href="./getOne/'. intval($person['id']) . '"/> ' . $person['id'] . '</td>' . '<td>' . $person['firstname'] . '</td><td>' . $person['lastname'] . '</td><td>' . $person['phone'] . '</td><td>' . $person['email'] . '</td><td>' . $person['company_name'] . '</td></tr>';
+        echo '<tr> <td><a href="getOne/'. intval($person['id']) . '"/> ' . 'Détails' . '</td>'  . '<td>' . $person['firstname'] . '</td><td>' . strtoupper($person['lastname']) . '</td><td>' . $person['phone'] . '</td><td>'.'<a  href="mailto:'. $person['email'] . '">' . $person['email'] . '</td><td>' . strtoupper($person['company_name']) . '</td><td>' . '<a href="delete/' . $person['id'] .  '" /> Suppr ' . '</td></tr>';
     }
     ?>
 

@@ -1,28 +1,18 @@
 <?php
-
 declare(strict_types=1);
-
 declare(encoding='utf8');
-// $sql = 'INSERT INTO clients (id, lastName, firstName, birthDate, card, cardNumber) VALUES (NULL, :name, :lastName, :firstName, :card, :cardNumber)';
-
-// $createCustom = $bdd -> prepare($sql);
-### Traitement POST
-// INSERT INTO `clients` (`id`, `lastName`, `firstName`, `birthDate`, `card`, `cardNumber`) VALUES (NULL, 'Atest', 'ATEST', '2021-11-01', '0', NULL);
-
-if (isset($_POST['Valider'])) {
-    $createCustom->execute([
-        'firstName' => $_POST['firstName'],
-        'lastName' =>  $_POST['lastName'],
-        'card' =>  $_POST['card'],
-        'cardNumber' =>  $_POST['cardNumber'],
-    ]);
-}
+// if (isset($_POST['Valider'])) {
+    // $createCustom->execute([
+    //   
+    // ]);
+// }
 
 class Form
 {
-    public function create($str): string {
+    public function create(string $str, string $method): string {
         $this->action = $str;
-        return '<form action="' . $this->action . '" method="POST">';
+        $this->method = $method;
+        return '<form action="' . $this->action . '" method="'.$this->method . '">';
     }
 
     public function input($type, $propName, $propVal, $propLabel): string {
@@ -30,7 +20,7 @@ class Form
         $this->propName = $propName;
         $this->propVal = $propVal;
         $this->propLabel = $propLabel;
-        return '<label for="' . $this->propName . '">'. ucfirst($this->propLabel) . ' : </label><input type="' . $this->type . '" name="' . $this->propName . '" placeholder="' . $this->propVal . '"/>';
+        return '<label for="' . $this->propName . '">'. ucfirst($this->propLabel) . ' </label><input type="' . $this->type . '" name="' . $this->propName . '" placeholder="' . $this->propVal . '" required />';
     }
 
     public function select(string $str, array $arr) {
@@ -67,10 +57,11 @@ class Form
         return '<textarea name="' . $this->propName . '" cols="' . $this->cols . '" rows="' . $this->rows . '"></textarea>';
     }
 
-    public function submit($str): string
+    public function submit($name, $value): string
     {
-        $this->submitName = $str;
-        return '<input type="submit" name="' . $this->submitName . '" value="' . $this->submitName . '"/>';
+        $this->submitName = $name;
+        $this->submitValue = $value;
+        return '<input type="submit" name="' . $this->submitName . '" value="' . $this->submitValue . '"/>';
     }
 
     public function end()

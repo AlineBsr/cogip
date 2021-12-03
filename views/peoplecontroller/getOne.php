@@ -6,3 +6,5 @@
     <tr><th>Téléphone : </th>   <td> <?php echo $person['phone'] ?></td></tr>
 </table>
 <h2> Contact person for this invoices :</h2>
+
+<button  onclick="window.location.href='../getAll'">Retour à la liste des contacts</button>
