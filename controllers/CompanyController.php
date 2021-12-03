@@ -31,14 +31,20 @@
         public function update(int $id){
             $this->findModel('Company');
             $companie = $this->Company->getOne($id);
-            $companieToUpdate = $companie;
-            $this->render('update', ['companie' => $companieToUpdate]);
+            $this->render('update', ['companie' => $companie]);
             $updateCompany = array();
             $listeColumn = ['name = ?','address = ?','country = ?','vat = ?','phone = ?'];
             if(isset($_POST["name"])){
                 $updateCompany = [$_POST["name"],$_POST["address"],$_POST["country"],$_POST["vat"],intval($_POST["phone"])];
                 $this->Company->update($listeColumn,$updateCompany,$id);
             }
+        }
+
+        public function delete(int $id){
+            $this->findModel(('Company'));
+            $companie = $this->Company->getOne($id);
+            $this->Company->delete($id);
+            echo "La companie ". $companie['name'] ." a bien été suprimé.";
         }
 
     }

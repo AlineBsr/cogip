@@ -46,11 +46,10 @@
             return $query;
         }
 
-        public function delete(){
-            $sql = "DELETE FROM " .$this->table. " WHERE id=" .$this->id;
+        public function delete(int $id){
+            $sql = "DELETE FROM " .$this->table. " WHERE id=" .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
-            return "l'élément dont l'id était ".$this->id. " à bien été suprimé.";
         }
         
         public function update(array $listColumn, array $listValue, int $id){
