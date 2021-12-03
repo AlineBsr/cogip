@@ -7,4 +7,4 @@
 </table>
 <h2> Contact person for this invoices :</h2>
 
-<button  onclick="window.location.href='../getAll'">Retour à la liste des contacts</button>
+<button  onclick="window.location.href='../getPeople'">Retour à la liste des contacts</button>

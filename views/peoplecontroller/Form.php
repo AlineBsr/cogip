@@ -20,7 +20,7 @@ class Form
         $this->propName = $propName;
         $this->propVal = $propVal;
         $this->propLabel = $propLabel;
-        return '<label for="' . $this->propName . '">'. ucfirst($this->propLabel) . ' </label><input type="' . $this->type . '" name="' . $this->propName . '" placeholder="' . $this->propVal . '" required />';
+        return '<label for="' . $this->propName . '">'. ucfirst($this->propLabel) . ' </label><input type="' . $this->type . '" name="' . $this->propName . '" value="' . $this->propVal . '" placeholder="' . str_replace( ':', '', $this->propLabel ) . '" required />';
     }
 
     public function select(string $str, array $arr) {
