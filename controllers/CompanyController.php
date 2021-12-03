@@ -22,9 +22,22 @@
             $listeColumn = ['name','address','country','vat','phone'];
             $this->render('add', ['newCompany' => $newCompany]);
             if(isset($_POST["name"])){
-                $newCompany = [$_POST["name"],$_POST["address"],$_POST["country"],$_POST["vat"],$_POST["phone"]];
+                $newCompany = [$_POST["name"],$_POST["address"],$_POST["country"],$_POST["vat"],intval($_POST["phone"])];
                 var_dump($newCompany);
                 $this->Company->add($listeColumn,$newCompany);
+            }
+        }
+
+        public function update(int $id){
+            $this->findModel('Company');
+            $companie = $this->Company->getOne($id);
+            $companieToUpdate = $companie;
+            $this->render('update', ['companie' => $companieToUpdate]);
+            $updateCompany = array();
+            $listeColumn = ['name = ?','address = ?','country = ?','vat = ?','phone = ?'];
+            if(isset($_POST["name"])){
+                $updateCompany = [$_POST["name"],$_POST["address"],$_POST["country"],$_POST["vat"],intval($_POST["phone"])];
+                $this->Company->update($listeColumn,$updateCompany,$id);
             }
         }
 

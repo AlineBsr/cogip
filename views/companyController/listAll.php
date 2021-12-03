@@ -6,5 +6,6 @@
     <p>Pays: <?php echo $companie['country'] ?></p>
     <p>TVA: <?php echo $companie['vat'] ?></p>
     <p>Tel: <?php echo $companie['phone'] ?></p>
+    <a href="update/<?= $companie['id']?>"><input type="button" value="modifier"></a>
     <?php
 } ?>
