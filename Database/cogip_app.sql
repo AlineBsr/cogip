@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `company_type` (
 DROP TABLE IF EXISTS `invoice`;
 CREATE TABLE IF NOT EXISTS `invoice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `number` int(11) NOT NULL,
+  `invoice_number` varchar(25) NOT NULL,
   `invoice_date` date NOT NULL,
   `about` text NOT NULL,
   PRIMARY KEY (`id`)
