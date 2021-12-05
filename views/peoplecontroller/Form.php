@@ -15,12 +15,13 @@ class Form
         return '<form action="' . $this->action . '" method="'.$this->method . '">';
     }
 
-    public function input($type, $propName, $propVal, $propLabel): string {
+    public function input($type, $propName, $propVal, $propLabel, $placeHolder): string {
         $this->type = $type;
         $this->propName = $propName;
         $this->propVal = $propVal;
+        $this->placeHold = $placeHolder;
         $this->propLabel = $propLabel;
-        return '<label for="' . $this->propName . '">'. ucfirst($this->propLabel) . ' </label><input type="' . $this->type . '" name="' . $this->propName . '" value="' . $this->propVal . '" placeholder="' . str_replace( ':', '', $this->propLabel ) . '" required />';
+        return '<label for="' . $this->propName . '">'. ucfirst($this->propLabel) . ' </label><input type="' . $this->type . '" name="' . $this->propName . '" value="' . $this->propVal . '" placeholder="' .$this->placeHold . '" required />';
     }
 
     public function select(string $str, array $arr) {

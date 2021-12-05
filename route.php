@@ -21,11 +21,11 @@ if ($parameters[0] != "") {
         isset($parameters[2]) ? call_user_func([$controller, $action], $parameters[2]) : $controller->$action();
     } else {
         http_response_code(404);
-        echo "Impossible de trouver l'action demandé.";
+        echo "Impossible de trouver l'action demandée.";
     }
 } else {
     http_response_code(404);
-    echo "Impossible de trouver la page demandé.";
+    echo "Impossible de trouver la page demandée.";
 }
 // phpinfo();
 // var_dump(PHP_OS);
