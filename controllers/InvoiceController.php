@@ -53,7 +53,7 @@
             if (isset($_POST["editInvoice"])) {
                 $amend = [$_POST["number"], $_POST["date"], $_POST["about"]];
                 $this -> Invoice -> update($items, $amend, $id);
-                echo "<p style='text-align:center; font-weight:bold;'>Modifications appliquées. Bien reçu, J-C !</p>";
+                echo "<p style='text-align:center; font-weight:bold;'>Modifications appliquées à la facture " . $invoice["invoice_number"] . ". Bien reçu, J-C !</p>";
             }
 
         }

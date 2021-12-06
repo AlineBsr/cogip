@@ -3,7 +3,7 @@
         private $host = "localhost";
         private $dbName = "cogip_app";
         protected $user = "root";
-        protected $password = "";
+        protected $password = (PHP_OS == "WINNT") ? "" : "root";
 
         protected $connectionString;
 
@@ -50,7 +50,6 @@
             $sql = "DELETE FROM " . $this -> table . " WHERE id=" .$id;
             $query = $this -> connectionString -> prepare($sql);
             $query -> execute();
-            // return "L'élément dont l'id était ".$this->id. " a bien été supprimé.";
         }
         
         public function update(array $listColumn, array $listValue, int $id) {
@@ -58,7 +57,6 @@
             $sql = "UPDATE " . $this -> table. " SET " . $columnToStr . " WHERE id=" .$id;
             $query = $this -> connectionString -> prepare($sql);
             $query -> execute($listValue);
-            // return "L'élément dont l'id était ".$this -> id. " a bien été modifié.";
         }
 
     }
