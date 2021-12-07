@@ -1,11 +1,5 @@
 <?php
 declare(strict_types=1);
-declare(encoding='utf8');
-// if (isset($_POST['Valider'])) {
-    // $createCustom->execute([
-    //   
-    // ]);
-// }
 
 class Form
 {

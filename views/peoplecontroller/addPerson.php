@@ -1,7 +1,7 @@
 <?php
     require('Form.php');
 ?>
-<br><button  onclick="window.location.href='./getPeople'">Retour à la liste des contacts</button>
+<br><button  onclick="window.location.href='getPeople'">Retour à la liste des contacts</button>
 <h1>Ajouter un contact</h1>
 
 <?php

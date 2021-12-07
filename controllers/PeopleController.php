@@ -6,20 +6,20 @@ class PeopleController extends Controller
     public function getPerson(int $id) {
         $this->findModel('People');
         $person = $this->People->getOne($id);
-        $this->render('getPerson.php', ['person' => $person]);
+        $this->render('getPerson', ['person' => $person]);
     }
 
     public function getPeople() {
         $this->findModel('People');
         $people = $this->People->getAll();
-        $this->render('getPeople.php', ['people' => $people]);
+        $this->render('getPeople', ['people' => $people]);
 
     }
 
     public function addPerson() {
         $this->findModel('People');
         $person = array();
-        $this->render('addPerson.php', $person);
+        $this->render('addPerson', $person);
         
         $colName = ['firstname', 'lastname', 'phone', 'email', 'company_name'];
         if (isset($_POST['submitContact'])) {
@@ -30,14 +30,14 @@ class PeopleController extends Controller
             $person =  [$_POST['firstname'], $_POST['lastname'], $_POST['phone'], $_POST['email'], $_POST['company']];
             $this->People->add($colName, $this->formSanitization($person));
             echo 'Le contact <em>' . $_POST['firstname'] . ' ' . $_POST['lastname'] . '</em> a bien été ajouté ! ';
-            echo '<br><button  onclick="window.location.href=\'../getPeople\'">Retour à la liste des contacts</button>';
+            echo '<br><button  onclick="window.location.href=\'getPeople\'">Retour à la liste des contacts</button>';
         } 
     }
 
     public function updatePerson(int $id) {
         $this->findModel('People');
         $updatePerson = $this->People->getOne($id);
-        $this->render('updatePerson.php', ['person' => $updatePerson]);
+        $this->render('updatePerson', ['person' => $updatePerson]);
 
         $updatePerson = array();
         $colName = ['firstname = ?', 'lastname = ?', 'phone = ?', 'email = ?', 'company_name = ?'];

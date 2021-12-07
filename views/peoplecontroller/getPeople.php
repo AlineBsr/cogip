@@ -8,7 +8,7 @@
         <th scope="col">Nom</th>
         <th scope="col">Téléphone</th>
         <th scope="col">Courriel</th>
-        <th scope="col">Entreprise</th>
+        <th scope="col">Société</th>
     </tr>
 
     <?php

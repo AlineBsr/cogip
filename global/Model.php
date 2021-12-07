@@ -3,8 +3,7 @@
         private $host = "localhost";
         private $dbName = "cogip_app";
         protected $user = 'root';
-        protected $password = '';
-        protected $password_unix = 'root';
+        protected $password = (PHP_OS == "WINNT")? '' : 'root';
         protected $connectionString;
 
         public $table;
@@ -12,8 +11,7 @@
         public function getConnection(){
             $this->connectionString = null;
             try{
-                // $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password);
-                $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password_unix);
+                $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password);
             }
             catch(PDOException $exeption){
                 $exeption->getMessage();
