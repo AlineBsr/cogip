@@ -4,6 +4,7 @@
         private $dbName = "cogip_app";
         protected $user = 'root';
         protected $password = (PHP_OS == "WINNT")? '' : 'root';
+
         protected $connectionString;
 
         public $table;
@@ -25,8 +26,22 @@
             return $query->fetchall();
         }
 
+        public function getAllFromTwo(string $table2, string $condition){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetchall();
+        }
+
         public function getOne(int $id){
             $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$id;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
+        }
+
+        public function getOneFromTwo(int $id, string $table2, string $condition){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition. " WHERE ". $this->table .".id = " .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetch();
@@ -46,15 +61,13 @@
         }
 
         public function delete(int $id){
-            $sql = "DELETE FROM " .$this->table. " WHERE id=" . $id;
+            $sql = "DELETE FROM " .$this->table. " WHERE id=" .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
-
-            // return "l'élément dont l'id était ".$this->id. " à bien été suprimé.";
         }
         
         public function update(array $listColumn, array $listValue, int $id){
-            $columnToStr = implode(',', $listColumn); // ['name = ?'] dans mon controllerP
+            $columnToStr = implode(',', $listColumn);
             $sql = "UPDATE " .$this->table. " SET ". $columnToStr. " WHERE id=" .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute($listValue);
