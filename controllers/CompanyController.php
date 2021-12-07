@@ -50,12 +50,23 @@
         }
 
         public function delete(int $id){
-            $this->findModel(('Company'));
+            $this->findModel('Company');
             $companie = $this->Company->getOne($id);
             $this->Company->delete($id);
             $this->findModel('CompanyType');
             $this->CompanyType->delete($id);
             echo "La companie ". $companie['name'] ." a bien été suprimé.";
+        }
+
+        public function search(){
+            $this->findModel('Company');
+            $result = array();
+            $this->render('search',['result' => $result]);
+            if(isset($_POST['name'])){
+                $name = $_POST['name'];
+                $result = $this->Company->search('name', $name);
+                header('location: detail/'.$result['id']);
+            }
         }
 
     }

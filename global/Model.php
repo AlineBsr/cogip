@@ -26,11 +26,18 @@
             return $query->fetchall();
         }
 
-        public function getAllFromTwo(string $table2, string $condition){
-            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition;
+        public function getAllFromTwo(string $table2, string $column){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$column." = ". $table2.".".$column;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetchall();
+        }
+
+        public function search(string $column, string $value){
+            $sql = "SELECT * FROM " .$this->table." WHERE ". $this->table .".".$column. " = '" .$value. "'";
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
         }
 
         public function getOne(int $id){
@@ -40,8 +47,8 @@
             return $query->fetch();
         }
 
-        public function getOneFromTwo(int $id, string $table2, string $condition){
-            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition. " WHERE ". $this->table .".id = " .$id;
+        public function getOneFromTwo(int $id, string $table2, string $column){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$column." = ". $table2.".".$column. " WHERE ". $this->table .".id = " .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetch();

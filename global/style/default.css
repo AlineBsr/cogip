@@ -1,0 +1,34 @@
+body {
+  background-color: lightcoral;
+  color: white;
+}
+
+body h1 {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  border-top: solid white;
+  border-width: thin;
+}
+
+header {
+  height: 7rem;
+  width: 100%;
+  background-image: url("image/logo-cogip.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+header nav {
+  padding-left: 15rem;
+  font-size: 25px;
+}
+
+header nav ul li {
+  text-decoration: none;
+  display: inline;
+  padding-left: 2rem;
+}
+/*# sourceMappingURL=default.css.map */
