@@ -3,7 +3,7 @@
         private $host = "localhost";
         private $dbName = "cogip_app";
         protected $user = 'root';
-        protected $password = '';
+        protected $password = (PHP_OS == "WINNT")? '' : 'root';
 
         protected $connectionString;
 
@@ -26,8 +26,22 @@
             return $query->fetchall();
         }
 
+        public function getAllFromTwo(string $table2, string $condition){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetchall();
+        }
+
         public function getOne(int $id){
             $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$id;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
+        }
+
+        public function getOneFromTwo(int $id, string $table2, string $condition){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition. " WHERE ". $this->table .".id = " .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetch();

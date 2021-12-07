@@ -5,7 +5,8 @@
     <p>Adresse: <?php echo $companie['address'] ?></p>
     <p>Pays: <?php echo $companie['country'] ?></p>
     <p>TVA: <?php echo $companie['vat'] ?></p>
-    <p>Tel: <?php echo $companie['phone'] ?></p>
+    <p>Tel: <?php echo "0".$companie['phone'] ?></p>
+    <p>Type: <?php echo $companie['type']?></p>
     <a href="update/<?= $companie['id']?>"><input type="button" value="modifier"></a>
     <a href="delete/<?= $companie['id']?>"><input type="button" value="supprimer"></a>
     <?php

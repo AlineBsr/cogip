@@ -20,5 +20,9 @@
         <label for="phone">Numero de telephone de la companie: </label>
         <input type="text" name="phone" value="<?= $companie['phone'] ?>">
     </p>
+    <p>
+        <label for="type">Type: </label>
+        <input type="text" name="type" value="<?= $companie['type'] ?>">
+    </p>
     <input type="submit">
 </form>

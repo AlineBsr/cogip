@@ -20,5 +20,9 @@
         <label for="phone">Numero de telephone de la companie: </label>
         <input type="text" name="phone">
     </p>
+    <p>
+        <label for="type">Type: </label>
+        <input type="text" name="type">
+    </p>
     <input type="submit">
 </form>
