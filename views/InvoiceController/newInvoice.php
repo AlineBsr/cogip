@@ -6,8 +6,8 @@
     <label for="date">Date de création de la facture : </label>
     <input type="date" name="date" aria-label="Date de facturation" required/><br/>
 
-    <label for="about">Informations essentielles : </label>
-    <input type="text" name="about" aria-label="Infos essentielles" /><br/>
+    <label for="company_name">Nom de la société : </label>
+    <input type="text" name="company_name" aria-label="Société" /><br/>
 
     <button type="submit" name="addInvoice" title="Validation">Enregistrer la facture</button>
     <button type="reset" value="Réinitialiser">Réinitialiser</button>

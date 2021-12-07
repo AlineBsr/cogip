@@ -6,8 +6,8 @@
     <label for="date">Date de création de la facture : </label>
     <input type="date" name="date" aria-label="Date de facturation" value="<?php echo $invoice['invoice_date'] ?>" required/><br/>
 
-    <label for="about">Informations essentielles : </label>
-    <input type="text" name="about" aria-label="Infos essentielles" value="<?php echo $invoice['about'] ?>" /><br/>
+    <label for="company_name">Nom de la société : </label>
+    <input type="text" name="company_name" aria-label="Société" value="<?php echo $invoice['company_name'] ?>" /><br/>
 
     <button type="submit" name="editInvoice" title="Validation">Appliquer les modifications</button>
 </form>

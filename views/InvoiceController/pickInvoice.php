@@ -10,7 +10,7 @@
         <th>Type de société</th>
     </tr>
     <tr>
-        <td><?php echo $company["name"]; ?></td>
+        <td><?php echo $invoice["company_name"]; ?></td>
         <td><?php echo $company["vat"]; ?></td>
         <td><?php echo $company_type["type"]; ?></td>
     </tr>
@@ -26,6 +26,6 @@
     <tr>
         <td><?= "{$person['firstname']} {$person['lastname']}" ?></td>
         <td><?= $person["email"]; ?></td>
-        <td><?= $person["phone"]; ?></td>
+        <td><?= "{$person["phone"]}" ?></td>
     </tr>
 </table>
