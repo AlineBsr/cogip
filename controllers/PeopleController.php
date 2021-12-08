@@ -6,7 +6,8 @@ class PeopleController extends Controller
     public function getPerson(int $id) {
         $this->findModel('People');
         $person = $this->People->getOne($id);
-        $this->render('getPerson', ['person' => $person]);
+        $invoices = $this->People->getAllFromTwo('invoice', 'company_name');
+        $this->render('getPerson', ['person' => $person, 'invoices' => $invoices]); 
     }
 
     public function getPeople() {
@@ -14,7 +15,7 @@ class PeopleController extends Controller
         $people = $this->People->getAll();
         $this->render('getPeople', ['people' => $people]);
     }
-
+    
     public function addPerson() {
         $this->findModel('People');
         $person = array();
@@ -53,10 +54,9 @@ class PeopleController extends Controller
     private function formSanitization(array $person) {
         $tel_pattern = "/^(\+\d{1,3})?[0]?[\d]{9}$/";
         $text_pattern = "/^(?:[a-zA-Z])[\w\s.-]{2,}$/";
-        // https://www.developerspot.co.ke/posts/server-side-form-sanitization
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // var_dump($_POST);s
+            // var_dump($_POST);
             $firstname = $lastname = $phone = $email = $comp = '';
             $firstname = htmlspecialchars( ucfirst( $_POST['firstname']));
             $lastname = htmlspecialchars( ucfirst( $_POST['lastname']));

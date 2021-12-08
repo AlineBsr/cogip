@@ -1,6 +1,5 @@
-<h1>Liste des contacts</h1>
-<button  onclick="window.location.href='./addPerson'">Ajouter un contact</button>
-<br/>    
+<h1>Liste des contacts <button  onclick="window.location.href='./addPerson'">Ajouter un contact</button> </h1>
+</div>
 <table>
     <tr>
         <th scope="col"></th>
@@ -13,7 +12,7 @@
 
     <?php
     foreach ($people as $person) {
-        echo '<tr> <td><a href="getPerson/'. intval($person['id']) . '"/> ' . 'Détails' . '</td>'  . '<td>' . $person['firstname'] . '</td><td>' . strtoupper($person['lastname']) . '</td><td>' . $person['phone'] . '</td><td>'.'<a  href="mailto:'. $person['email'] . '">' . $person['email'] . '</td><td>' . strtoupper($person['company_name']) . '</td><td><a href="updatePerson/'. intval($person['id']) . '"/> Modifier </td><td>' . '<a href="delete/' . $person['id'] .  '" /> Suppr ' . '</td></tr>';
+        echo '<tr> <td><a href="getPerson/'. intval($person['id']) . '"/> ' . 'Détails' . '</td>'  . '<td>' . $person['firstname'] . '</td><td>' . mb_strtoupper($person['lastname']) . '</td><td>' . $person['phone'] . '</td><td>'.'<a  href="mailto:'. $person['email'] . '">' . $person['email'] . '</td><td>' . mb_strtoupper($person['company_name']) . '</td><td><a href="updatePerson/'. intval($person['id']) . '"/> Modifier </td><td>' . '<a href="delete/' . $person['id'] .  '" /> Suppr ' . '</td></tr>';
     }
     ?>
 

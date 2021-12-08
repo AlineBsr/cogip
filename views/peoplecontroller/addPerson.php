@@ -7,9 +7,8 @@
 <?php
     $form = new Form();
 
-    echo $form->create('addPerson', 'post'). '<br>'; 
-    echo $form->input('text', 'firstname', '', 'Prénom : ', 'Prénom'). '<br>'; 
-    echo $form->input('text', 'lastname', '', 'Nom : ', 'Nom'). '<br>'; 
+    echo $form->create('addPerson', 'post');
+    // echo $form->radio('gender', ['M', 'Mme']) . ' ' . $form->input('text', 'firstname', '', ' ', 'Prénom'). ' ' . $form->input('text', 'lastname', '', ' ', 'Nom'). '<br>'; 
     echo $form->input('number', 'phone', '', 'N° Téléphone : ', 'Tel'). '<br>';
     echo $form->input('email', 'email', '', 'Email : ', 'Email'). '<br>';
     echo $form->input('text', 'company', '', 'Société : ', 'Société'). '<br>';
