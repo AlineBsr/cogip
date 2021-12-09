@@ -1,5 +1,7 @@
 <h1 style="text-align:center;">Corpus des factures</h1>
 
+<h4>Générer une <a href="./newinvoice" style="text-decoration:none;">nouvelle facture</a></h4>
+
 <table>
     <tr>
         <th>Numéro de facture</th>

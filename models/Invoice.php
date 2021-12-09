@@ -22,10 +22,10 @@
             return $query -> fetchAll(); 
         }
 
-        public function getNamesFromInvoice() {
-            $request = "SELECT DISTINCT company_name FROM " . $this -> table;
-            $query = $this -> connectionString -> prepare($request);
+        public function getAllOrdered() {
+            $sql = "SELECT * FROM " . $this -> table . " ORDER BY invoice_date DESC";
+            $query = $this -> connectionString -> prepare($sql);
             $query -> execute();
-            return $query -> fetchAll(); 
+            return $query -> fetchAll();
         }
     }

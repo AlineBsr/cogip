@@ -29,7 +29,7 @@
         // To read and thus display all existing invoices
         public function allInvoices() {
             $this -> findModel("Invoice");
-            $invoices = $this -> Invoice -> getAll();
+            $invoices = $this -> Invoice -> getAllOrdered();
             var_dump($invoices);
 
             $this -> render("allInvoices", ["invoices" => $invoices]);
@@ -50,17 +50,10 @@
             $invoice = $this -> Invoice -> getOne($id);
             var_dump($invoice);
 
-            $this -> render("amendInvoice", ["invoice" => $invoice]);
+            $companies = $this -> Invoice -> getNames();
+            var_dump($companies);
 
-
-            // $companies = [];
-            // $this -> render("amendInvoice", ["companies" => $companies]);
-
-            // if (strlen($invoice["company_name"]) > 0) {
-            //     $companies = $this -> Invoice -> getNamesFromInvoice();
-            //     var_dump($companies);
-            //     echo "Vive " . $companies[$id]['company_name'] . " !";
-            // }
+            $this -> render("amendInvoice", ["invoice" => $invoice, "companies" => $companies]);
 
             $amend = [];
             $items = ["invoice_number = ?", "invoice_date = ?", "company_name = ?", "company_type = ?"];
@@ -79,7 +72,7 @@
             $invoice = $this -> Invoice -> getOne($id);
             $this -> Invoice -> delete($id);
             var_dump($invoice);
-            echo "<p style='text-align:center; font-weight:bold;'>Suppression de la facture " . $invoice['invoice_number'] . ".</p>";
+            echo "Suppression de la facture " . $invoice['invoice_number'] . ".</p>";
         }
 
     }
