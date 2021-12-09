@@ -11,26 +11,20 @@
 
             $companies = $this -> Invoice -> getNames();
             $this -> render("newInvoice", ["companies" => $companies]);
-            var_dump($companies);
 
             $this -> render("newInvoice", ["newInvoice" => $newInvoice]);            
 
             if (isset($_POST["addInvoice"])) {
                 $newInvoice = [$_POST["number"], $_POST["date"], $_POST["company"], $_POST["type"]];
-                $this -> Invoice -> add($items, $newInvoice);
-                var_dump($newInvoice);
-                var_dump($items);
+                $this -> Invoice -> add($items, $this -> formSanitization($newInvoice));
                 echo "<p style='text-align:center; font-weight:bold;'>Ajout de la facture " . $newInvoice[0] . ". Bon boulot, J-C !</p>";
             }
-
-            else echo "<p style='text-align:center;'>Veuillez remplir les champs et la magie opérera, cher Jean-Christian.</p>";
         }
 
         // To read and thus display all existing invoices
         public function allInvoices() {
             $this -> findModel("Invoice");
             $invoices = $this -> Invoice -> getAllOrdered();
-            var_dump($invoices);
 
             $this -> render("allInvoices", ["invoices" => $invoices]);
         }
@@ -39,7 +33,6 @@
         public function pickInvoice(int $id) {
             $this -> findModel("Invoice");
             $invoice = $this -> Invoice -> getFromThree($id, "company", "people", "company_name", "name");
-            var_dump($invoice);
 
             $this -> render("pickInvoice", ["invoice" => $invoice]);
         }
@@ -48,10 +41,7 @@
         public function amendInvoice(int $id) {
             $this -> findModel("Invoice");
             $invoice = $this -> Invoice -> getOne($id);
-            var_dump($invoice);
-
             $companies = $this -> Invoice -> getNames();
-            var_dump($companies);
 
             $this -> render("amendInvoice", ["invoice" => $invoice, "companies" => $companies]);
 
@@ -60,7 +50,7 @@
 
             if (isset($_POST["editInvoice"])) {
                 $amend = [$_POST["number"], $_POST["date"], $_POST["company"], $_POST["type"]];
-                $this -> Invoice -> update($items, $amend, $id);
+                $this -> Invoice -> update($items, $this -> formSanitization($amend), $id);
                 echo "<p style='text-align:center; font-weight:bold;'>Modifications appliquées. Bien reçu, J-C !</p>";
             }
 
@@ -71,8 +61,32 @@
             $this -> findModel("Invoice");
             $invoice = $this -> Invoice -> getOne($id);
             $this -> Invoice -> delete($id);
-            var_dump($invoice);
-            echo "Suppression de la facture " . $invoice['invoice_number'] . ".</p>";
+            echo "<p style='text-align:center; font-weight:bold;'>Suppression de la facture " . $invoice['invoice_number'] . ".</p>";
+        }
+
+        // All due credit to Aline for this OOAK gem, barely had to adapt it 
+        private function formSanitization(array $invoice) {
+            $invoice_pattern = "/^F\d{8}-\d{3}/";
+            $text_pattern = "/^(?:[a-zA-Z])[\w\s.-]{2,}$/";
+    
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $sanitizedNumber = $sanitizedDate = $sanitizedCompany = $sanitizedType = "";
+                $sanitizedNumber = htmlspecialchars(ucfirst($_POST["number"]));
+                $sanitizedDate = preg_replace("([^0-9/-])", "", $_POST["date"]);
+                $sanitizedCompany = htmlspecialchars(ucwords($_POST["company"]));
+                $sanitizedType = htmlspecialchars(ucfirst($_POST["type"]));
+    
+                $sanitizedNumber = filter_var($sanitizedNumber, FILTER_SANITIZE_STRING);
+                $sanitizedCompany = filter_var($sanitizedCompany, FILTER_SANITIZE_STRING);
+                $sanitizedDate = filter_var($sanitizedDate, FILTER_SANITIZE_STRING);
+                // VALIDATION
+                if (!preg_match($invoice_pattern, $sanitizedNumber) or !preg_match($text_pattern, $sanitizedCompany) or !preg_match($text_pattern, $sanitizedType)) {
+                    echo "Veuillez vérifier la saisie pour le numéro de facture, le nom de la société et son type.";
+                } else {
+                    $invoice = [$sanitizedNumber, $sanitizedDate, $sanitizedCompany, $sanitizedType]; 
+                    return $invoice;
+                }
+            }
         }
 
     }

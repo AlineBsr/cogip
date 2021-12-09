@@ -17,7 +17,7 @@
         <label for="company">Nom de la société : </label>
         <select type="text" name="company" aria-label="Société" required>        
             <?php foreach($companies as $key => $value) : ?>
-            <option value="<?= $key + 1 ?>"><?= ucwords($value['name']) ?></option>
+            <option value="<?= ucwords($value['name']) ?>"><?= ucwords($value['name']) ?></option>
             <?php endforeach; ?>
         </select>
     </div>

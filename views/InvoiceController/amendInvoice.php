@@ -17,7 +17,7 @@
         <label for="company">Nom de la société : </label>
         <select type="text" name="company" aria-label="Société">        
             <?php foreach($companies as $key => $value) : ?>
-            <option value="<?= $key + 1 ?>"<?php echo ($value['name'] == $invoice['company_name']) ? "selected" : "" ?>><?= ucwords($value["name"]) ?></option>
+            <option value="<?= ucwords($value['name']) ?>"<?php echo ($value['name'] == $invoice['company_name']) ? "selected" : "" ?>><?= ucwords($value["name"]) ?></option>
             <?php endforeach; ?>
         </select>
     </div>
