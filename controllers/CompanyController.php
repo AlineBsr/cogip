@@ -7,13 +7,13 @@
         public function listAll(){
             $this->findModel('Company');
             $companies = $this->Company->getAllFromTwo('company_type','name');
-            $this->render('listAll', ['companies' => $companies ]);
+            $this->render('listAll.php', ['companies' => $companies ]);
         }
 
         public function detail(int $id){
             $this->findModel('Company');
             $companie = $this->Company->getOneFromTwo($id,'company_type','name');
-            $this->render('detail', ['companie' => $companie]);
+            $this->render('detail.php', ['companie' => $companie]);
         }
 
         public function add(){
@@ -22,7 +22,7 @@
             $newCompanyType = array();
             $listeColumn = ['name','address','country','vat','phone'];
             $listeColumn2 = ['name', 'type'];
-            $this->render('add', ['newCompany' => $newCompany]);
+            $this->render('add.php', ['newCompany' => $newCompany]);
             if(isset($_POST["name"])){
                 $newCompany = [$_POST["name"],$_POST["address"],$_POST["country"],$_POST["vat"],intval($_POST["phone"])];
                 $this->Company->add($listeColumn,$newCompany);
@@ -61,7 +61,7 @@
         public function search(){
             $this->findModel('Company');
             $result = array();
-            $this->render('search',['result' => $result]);
+            $this->render('search.php',['result' => $result]);
             if(isset($_POST['name'])){
                 $name = $_POST['name'];
                 $result = $this->Company->search('name', $name);
