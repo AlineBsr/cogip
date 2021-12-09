@@ -7,28 +7,21 @@ class PeopleController extends Controller
         $this->findModel('People');
         $person = $this->People->getOne($id);
         $invoices = $this->People->getAllFromTwo('invoice', 'company_name');
-        $this->render('getPerson.php', ['person' => $person, 'invoices' => $invoices]); 
+        $this->render('getPerson', ['person' => $person, 'invoices' => $invoices]); 
     }
 
     public function getPeople() {
         $this->findModel('People');
         $people = $this->People->getAll();
-        $this->render('getPeople.php', ['people' => $people]);
+        $this->render('getPeople', ['people' => $people]);
     }
     
     public function addPerson() {
         $this->findModel('People');
         $person = array();
-        $colName = ['firstname', 'lastname', 'phone', 'email', 'company_name'];
-        $this->findModel('Company');
-        $companies = $this->Company->getAll();
-        $companies_name = array();
-        foreach($companies as $companie){
-            array_push($companies_name, $companie['name']);
-        }
-        // var_dump($companies_name);
-        $this->render('addPerson.php', ['person' => $person, 'companies_name'=>$companies_name]);
+        $this->render('addPerson', $person);
 
+        $colName = ['firstname', 'lastname', 'phone', 'email', 'company_name'];
         if (isset($_POST['submitContact'])) {
             $person =  [$_POST['firstname'], $_POST['lastname'], $_POST['phone'], $_POST['email'], $_POST['company']];
             $this->People->add($colName, $this->formSanitization($person));
@@ -39,7 +32,7 @@ class PeopleController extends Controller
     public function updatePerson(int $id) {
         $this->findModel('People');
         $updatePerson = $this->People->getOne($id);
-        $this->render('updatePerson.php', ['person' => $updatePerson]);
+        $this->render('updatePerson', ['person' => $updatePerson]);
 
         $updatePerson = array();
         $colName = ['firstname = ?', 'lastname = ?', 'phone = ?', 'email = ?', 'company_name = ?'];

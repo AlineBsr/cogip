@@ -5,7 +5,7 @@
     <tr><th>Contact :</th>  <td> <?= $person['firstname'] . ' '.$person['lastname']  ?></td></tr>
     <tr><th>Société :</th>  <td> <?=  $person['company_name'] ?></td> </tr>
     <tr><th>Email :  </th>  <td> <?= '<a  href="mailto:'. $person['email'] . '">' . $person['email']; ?> </td></tr>
-    <tr><th>Téléphone :</th> <td> <?= '0'.$person['phone'] ?></td></tr>
+    <tr><th>Téléphone :<th> <td> <?= $person['phone'] ?></td></tr>
 </table>
 <h2> Contact référent pour ces factures :</h2>
 <?php
