@@ -7,9 +7,10 @@
     $parameters = explode('/', $_GET['u']);
 
     // var_dump($parameters);
-
+    session_start();
+    
     if($parameters[0] != ""){
-
+        
         $controller = ucfirst($parameters[0]);
         $action = isset($parameters[1]) ? $parameters[1] : 'route';
 
@@ -17,7 +18,7 @@
         
 
         $controller = new $controller();
-
+        
         if(method_exists($controller,$action)){
             isset($parameters[2]) ? call_user_func([$controller, $action], $parameters[2]) : $controller->$action();
         } 
@@ -30,6 +31,7 @@
         http_response_code(404);
         echo "Impossible de trouver la page demandé.";
     }
+
 
     // phpinfo();
     // var_dump(PHP_OS);

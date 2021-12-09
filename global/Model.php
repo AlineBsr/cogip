@@ -47,6 +47,13 @@
             return $query->fetch();
         }
 
+        public function getOneByCondition(string $condition, string $columnCondition){
+            $sql = "SELECT * FROM " .$this->table. " WHERE ". $columnCondition. "='". $condition. "'";
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
+        }
+
         public function getOneFromTwo(int $id, string $table2, string $column){
             $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$column." = ". $table2.".".$column. " WHERE ". $this->table .".id = " .$id;
             $query = $this->connectionString->prepare($sql);

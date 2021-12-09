@@ -1,11 +1,10 @@
-<?php 
+<?php
     require_once(ROOT.'/global/Model.php');
 
-    class People extends Model{
+    class Admin extends Model{
         public function __construct()
         {
-            $this->id = 3;
-            $this->table = 'people';
+            $this->table = "administration";
             $this->getConnection();
         }
     }
