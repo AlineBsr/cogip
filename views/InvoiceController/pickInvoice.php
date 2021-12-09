@@ -1,8 +1,7 @@
 <h1 style="text-align:center;">Facture : <?php echo $invoice["invoice_number"]; ?></h1>
 
-<!-- Same as earlier, will have to address relations prior to further revamping the following code !-->
-
 <h3>Société rattachée à la facture</h3>
+
 <table>
     <tr>
         <th>Nom</th>
@@ -10,9 +9,9 @@
         <th>Type de société</th>
     </tr>
     <tr>
-        <td><?php echo $invoice["company_name"]; ?></td>
-        <td><?php echo $company["vat"]; ?></td>
-        <td><?php echo $company_type["type"]; ?></td>
+        <td><?php echo $invoice["name"]; ?></td>
+        <td><?php echo $invoice["vat"]; ?></td>
+        <td><?php echo $invoice["company_type"]; ?></td>
     </tr>
 </table>
 
@@ -24,8 +23,8 @@
         <th>Numéro de téléphone</th>
     </tr>
     <tr>
-        <td><?= "{$person['firstname']} {$person['lastname']}" ?></td>
-        <td><?= $person["email"]; ?></td>
-        <td><?= "{$person["phone"]}" ?></td>
+        <td><?= "{$invoice['firstname']} {$invoice['lastname']}" ?></td>
+        <td><?= $invoice["email"]; ?></td>
+        <td><?php echo substr($invoice["phone"], 0, 1) == "6" && strlen($invoice["phone"]) > 7 ? "0" . $invoice["phone"] : $invoice["phone"]; ?></td>
     </tr>
 </table>

@@ -1,38 +1,37 @@
 <?php
-    abstract class Model {
+    abstract class Model{
         private $host = "localhost";
         private $dbName = "cogip_app";
-        protected $user = "root";
-        protected $password = (PHP_OS == "WINNT") ? "" : "root";
-
+        protected $user = 'root';
+        protected $password = (PHP_OS == "WINNT") ? '' : 'root';
+        // protected $password_unix = 'root';
         protected $connectionString;
 
         public $table;
-        public $column;
-        public $updateValue;
 
-        public function getConnection() {
-            $this -> connectionString = null;
-            try {
-                $this -> connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this -> dbName, $this -> user, $this -> password);
+        public function getConnection(){
+            $this->connectionString = null;
+            try{
+                $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password);
+                // $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password_unix);
             }
-            catch(PDOException $exception) {
-                $exception -> getMessage();
+            catch(PDOException $exeption){
+                $exeption->getMessage();
             }
         }
 
-        public function getAll() {
-            $sql = "SELECT * FROM " .$this -> table;
-            $query = $this->connectionString -> prepare($sql);
-            $query -> execute();
-            return $query -> fetchall();
+        public function getAll(){
+            $sql = "SELECT * FROM " .$this->table;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetchall();
         }
 
-        public function getOne(int $id) {
-            $sql = "SELECT * FROM " .$this -> table. " WHERE id=" . $id;
-            $query = $this -> connectionString -> prepare($sql);
-            $query -> execute();
-            return $query -> fetch();
+        public function getOne(int $id){
+            $sql = "SELECT * FROM " .$this->table. " WHERE id=" .$id;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
         }
 
         public function add(array $listColumn, array $listValue) {
@@ -46,17 +45,17 @@
             return $query;
         }
 
-        public function delete(int $id) {
-            $sql = "DELETE FROM " . $this -> table . " WHERE id=" .$id;
-            $query = $this -> connectionString -> prepare($sql);
-            $query -> execute();
+        public function delete(int $id){
+            $sql = "DELETE FROM " .$this->table. " WHERE id=" . $id;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
         }
         
-        public function update(array $listColumn, array $listValue, int $id) {
-            $columnToStr = implode(",", $listColumn);
-            $sql = "UPDATE " . $this -> table. " SET " . $columnToStr . " WHERE id=" .$id;
-            $query = $this -> connectionString -> prepare($sql);
-            $query -> execute($listValue);
+        public function update(array $listColumn, array $listValue, int $id){
+            $columnToStr = implode(',', $listColumn); // ['name = ?'] dans mon controllerP
+            $sql = "UPDATE " .$this->table. " SET ". $columnToStr. " WHERE id=" .$id;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute($listValue);
         }
 
     }

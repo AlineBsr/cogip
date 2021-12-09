@@ -7,14 +7,19 @@
         public function newInvoice() {
             $this -> findModel("Invoice");
             $newInvoice = [];
-            $items = ["invoice_number", "invoice_date", "company_name"];
+            $items = ["invoice_number", "invoice_date", "company_name", "company_type"];
 
-            $this -> render("newInvoice", ["newInvoice" => $newInvoice]);
+            $companies = $this -> Invoice -> getNames();
+            $this -> render("newInvoice", ["companies" => $companies]);
+            var_dump($companies);
+
+            $this -> render("newInvoice", ["newInvoice" => $newInvoice]);            
 
             if (isset($_POST["addInvoice"])) {
-                $newInvoice = [$_POST["number"], $_POST["date"], $_POST["company_name"]];
+                $newInvoice = [$_POST["number"], $_POST["date"], $_POST["company"], $_POST["type"]];
                 $this -> Invoice -> add($items, $newInvoice);
                 var_dump($newInvoice);
+                var_dump($items);
                 echo "<p style='text-align:center; font-weight:bold;'>Ajout de la facture " . $newInvoice[0] . ". Bon boulot, J-C !</p>";
             }
 
@@ -33,7 +38,7 @@
         // To read and thus display a given invoice
         public function pickInvoice(int $id) {
             $this -> findModel("Invoice");
-            $invoice = $this -> Invoice -> getOne($id);
+            $invoice = $this -> Invoice -> getFromThree($id, "company", "people", "company_name", "name");
             var_dump($invoice);
 
             $this -> render("pickInvoice", ["invoice" => $invoice]);
@@ -47,11 +52,21 @@
 
             $this -> render("amendInvoice", ["invoice" => $invoice]);
 
+
+            // $companies = [];
+            // $this -> render("amendInvoice", ["companies" => $companies]);
+
+            // if (strlen($invoice["company_name"]) > 0) {
+            //     $companies = $this -> Invoice -> getNamesFromInvoice();
+            //     var_dump($companies);
+            //     echo "Vive " . $companies[$id]['company_name'] . " !";
+            // }
+
             $amend = [];
-            $items = ["invoice_number = ?", "invoice_date = ?", "company_name = ?"];
+            $items = ["invoice_number = ?", "invoice_date = ?", "company_name = ?", "company_type = ?"];
 
             if (isset($_POST["editInvoice"])) {
-                $amend = [$_POST["number"], $_POST["date"], $_POST["company_name"]];
+                $amend = [$_POST["number"], $_POST["date"], $_POST["company"], $_POST["type"]];
                 $this -> Invoice -> update($items, $amend, $id);
                 echo "<p style='text-align:center; font-weight:bold;'>Modifications appliquées. Bien reçu, J-C !</p>";
             }
