@@ -12,7 +12,9 @@
     echo $form->input('text', 'lastname',  $person['lastname']   ,  'Nom : ', 'Nom' ). '<br>'; 
     echo $form->input('number', 'phone', $person['phone'] , 'N° Téléphone : ', 'N° Téléphone' ). '<br>';
     echo $form->input('email', 'email',  $person['email'] , 'Email : ' ,'Email'). '<br>';
-    echo $form->input('text', 'company',  $person['company_name'], 'Société : ','Société' ). '<br>';
+    $form->select('company', $companies_name, 'Société :') . '<br>';
+    
+    // echo $form->input('text', 'company',  $person['company_name'], 'Société : ','Société' ). '<br>';
     echo $form->submit('submitUpdateP', 'Modifier le contact'); 
     echo $form->end(); 
 ?>

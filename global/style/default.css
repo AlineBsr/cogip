@@ -2,9 +2,12 @@ body {
   background-color: lightcoral;
   color: white;
 }
-
 body h1 {
   text-align: center;
+}
+
+a {
+  text-decoration: none;
 }
 
 footer {
@@ -20,15 +23,12 @@ header {
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 header nav {
   padding-left: 15rem;
   font-size: 25px;
 }
-
 header nav ul li {
   text-decoration: none;
   display: inline;
   padding-left: 2rem;
 }
-/*# sourceMappingURL=default.css.map */
