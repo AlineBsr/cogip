@@ -7,3 +7,4 @@
 <input type="password" name="passwordRep">
 <input type="submit" value="se connecter">
 </form>
+<i>Hint : Admin:Admin</i>

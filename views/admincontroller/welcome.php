@@ -4,4 +4,7 @@ echo "Bienvenue ". $user . " !";
 <p>
 <a href="resetPassword">Changer mon mot de passe</a>
 <a href="logout">Se deconnecter</a>
+<br><br>
+<a href="./listUser">Liste des utilisateurs</a>
+
 </p>

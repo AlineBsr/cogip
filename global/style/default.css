@@ -54,7 +54,8 @@ a {
 }
 
 a:hover {
-  color: white;
+  background-color: #000;
+  color: #fff;
 }
 
 .banner-area {
