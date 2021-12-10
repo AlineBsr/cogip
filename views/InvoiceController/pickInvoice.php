@@ -29,4 +29,6 @@
     </tr>
 </table>
 
+<!-- Getting back on track. !-->
+
 <h4 style="text-align:center;">Retour au <a href="../allinvoices" style="text-decoration:none;">corpus des factures</a></h4>

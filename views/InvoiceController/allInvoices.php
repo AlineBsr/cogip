@@ -10,6 +10,8 @@
         <th>Type</th>
     </tr>
 
+    <!-- Extracting relevant data hereafter !-->
+
     <?php foreach ($invoices as $invoice) {
         echo "<tr>
         <td><a href='pickInvoice/" . $invoice["id"] . "'>" . ucfirst($invoice["invoice_number"]) . "</a></td>

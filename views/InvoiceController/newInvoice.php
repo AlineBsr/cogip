@@ -30,6 +30,8 @@
         </select>
     </div>
 
+    <!-- So much power for a sole man. !-->
+
     <button type="submit" name="addInvoice" title="Validation">Enregistrer la facture</button>
     <button type="reset" value="Réinitialiser">Réinitialiser</button>
 </form>

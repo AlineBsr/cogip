@@ -30,6 +30,8 @@
     </select>
     </div>
 
+    <!-- Your call. Be wise, Jean-Christian. !-->
+
     <div>
         <button type="submit" name="editInvoice" title="Validation">Appliquer les modifications</button>
         <p title="Suppression" style="color:red; cursor:pointer; font-size:small;" onclick="window.location.href='../deleteInvoice/<?=$invoice['id']?>'">Supprimer la facture</p>
