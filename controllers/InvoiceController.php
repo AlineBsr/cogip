@@ -10,9 +10,9 @@
             $items = ["invoice_number", "invoice_date", "company_name", "company_type"];
 
             $companies = $this -> Invoice -> getNames();
-            $this -> render("newInvoice", ["companies" => $companies]);
+            $this -> render("newInvoice.php", ["companies" => $companies]);
 
-            $this -> render("newInvoice", ["newInvoice" => $newInvoice]);            
+            $this -> render("newInvoice.php", ["newInvoice" => $newInvoice]);            
 
             if (isset($_POST["addInvoice"])) {
                 $newInvoice = [$_POST["number"], $_POST["date"], $_POST["company"], $_POST["type"]];
@@ -26,7 +26,7 @@
             $this -> findModel("Invoice");
             $invoices = $this -> Invoice -> getAllOrdered();
 
-            $this -> render("allInvoices", ["invoices" => $invoices]);
+            $this -> render("allInvoices.php", ["invoices" => $invoices]);
         }
 
         // To read and thus display a given invoice
@@ -34,7 +34,7 @@
             $this -> findModel("Invoice");
             $invoice = $this -> Invoice -> getFromThree($id, "company", "people", "company_name", "name");
 
-            $this -> render("pickInvoice", ["invoice" => $invoice]);
+            $this -> render("pickInvoice.php", ["invoice" => $invoice]);
         }
 
         // To update an existing invoice
@@ -43,7 +43,7 @@
             $invoice = $this -> Invoice -> getOne($id);
             $companies = $this -> Invoice -> getNames();
 
-            $this -> render("amendInvoice", ["invoice" => $invoice, "companies" => $companies]);
+            $this -> render("amendInvoice.php", ["invoice" => $invoice, "companies" => $companies]);
 
             $amend = [];
             $items = ["invoice_number = ?", "invoice_date = ?", "company_name = ?", "company_type = ?"];
