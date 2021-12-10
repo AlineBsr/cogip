@@ -1,38 +1,43 @@
 <?php
-    abstract class Model {
+    abstract class Model{
         private $host = "localhost";
         private $dbName = "cogip_app";
-        protected $user = "root";
-        protected $password = (PHP_OS == "WINNT") ? "" : "root";
+        protected $user = 'root';
+        protected $password = (PHP_OS == "WINNT")? '' : 'root';
 
         protected $connectionString;
 
         public $table;
-        public $column;
-        public $updateValue;
 
-        public function getConnection() {
-            $this -> connectionString = null;
-            try {
-                $this -> connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this -> dbName, $this -> user, $this -> password);
+        public function getConnection(){
+            $this->connectionString = null;
+            try{
+                $this->connectionString = new PDO('mysql:host='.$this->host.'; dbname='.$this->dbName,$this->user,$this->password);
             }
-            catch(PDOException $exception) {
-                $exception -> getMessage();
+            catch(PDOException $exeption){
+                $exeption->getMessage();
             }
         }
 
-        public function getAll() {
-            $sql = "SELECT * FROM " .$this -> table;
-            $query = $this->connectionString -> prepare($sql);
-            $query -> execute();
-            return $query -> fetchall();
-        }
-
-        public function getAllFromTwo(string $table2, string $condition){
-            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition;
+        public function getAll(){
+            $sql = "SELECT * FROM " .$this->table;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetchall();
+        }
+
+        public function getAllFromTwo(string $table2, string $column){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$column." = ". $table2.".".$column;
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetchall();
+        }
+
+        public function search(string $column, string $value){
+            $sql = "SELECT * FROM " .$this->table." WHERE ". $this->table .".".$column. " = '" .$value. "'";
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
         }
 
         public function getOne(int $id){
@@ -42,8 +47,15 @@
             return $query->fetch();
         }
 
-        public function getOneFromTwo(int $id, string $table2, string $condition){
-            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$condition." = ". $table2.".".$condition. " WHERE ". $this->table .".id = " .$id;
+        public function getOneByCondition(string $condition, string $columnCondition){
+            $sql = "SELECT * FROM " .$this->table. " WHERE ". $columnCondition. "='". $condition. "'";
+            $query = $this->connectionString->prepare($sql);
+            $query->execute();
+            return $query->fetch();
+        }
+
+        public function getOneFromTwo(int $id, string $table2, string $column){
+            $sql = "SELECT * FROM " .$this->table." LEFT JOIN ".$table2. " ON ". $this->table.".".$column." = ". $table2.".".$column. " WHERE ". $this->table .".id = " .$id;
             $query = $this->connectionString->prepare($sql);
             $query->execute();
             return $query->fetch();

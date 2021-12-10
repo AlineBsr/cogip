@@ -4,12 +4,14 @@
     class AdminController extends Controller{
 
         public function logIn(){
+
             $this->findModel('Admin');
             $user = array();
             $this->render('login.php', ['user' => $user ]);
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 header("location: welcome");
             }
+            var_dump($_POST);
             if(isset($_POST["username"])){
                 $username = $_POST["username"];
                 $password = $_POST["password"];
@@ -36,14 +38,14 @@
                 header("location: login");
             }
             $user = $_SESSION["username"];
-            $this->render('welcome', ['user' => $user ]);
+            $this->render('welcome.php', ['user' => $user ]);
         }
 
         public function signIn(){
             $this->findModel('Admin');
             $newUser = array();
             $listeColumn = ['login','password','isAdmin','isMod'];
-            $this->render('signIn', ['newUser' => $newUser]);
+            $this->render('signIn.php', ['newUser' => $newUser]);
             if(isset($_POST["username"])){
                 if($_POST["password"] != $_POST["passwordRep"]){
                     echo "Les mots de passe ne correspondent pas";
@@ -70,7 +72,7 @@
                 $this->checkIfLogged();
                 $this->findModel("Admin");
                 $users = $this->Admin->getAll();
-                $this->render('listUser', ['users' => $users]);
+                $this->render('listUser.php', ['users' => $users]);
             }
         }
 
@@ -83,7 +85,7 @@
                 $this->checkIfLogged();
                 $this->findModel("Admin");
                 $user = $this->Admin->getOne($id);
-                $this->render('privilegeUpdate', ['user' => $user]);
+                $this->render('privilegeUpdate.php', ['user' => $user]);
                 $updateUser = array();
                 $listeColumn = ['isAdmin = ?','isMod = ?'];
                 if(isset($_POST["privilege"])){
@@ -109,7 +111,7 @@
             $this->checkIfLogged();
             $this->findModel('Admin');
             $user = $this->Admin->getOnebyCondition($_SESSION["username"],'login');
-            $this->render('resetPassword', ['user' => $user]);
+            $this->render('resetPassword.php', ['user' => $user]);
             $updateUser = array();
             $listeColumn = ['password = ?'];
             if(isset($_POST['password'])){
@@ -127,7 +129,7 @@
         public function logOut(){
             $this->checkIfLogged();
             $_SESSION = array();
-            $this->render('logout',['user' => $_SESSION]);
+            $this->render('logout.php',['user' => $_SESSION]);
             session_destroy();
             header("location: login");
         }
