@@ -6,7 +6,7 @@
         public function logIn(){
             $this->findModel('Admin');
             $user = array();
-            $this->render('login', ['user' => $user ]);
+            $this->render('login.php', ['user' => $user ]);
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 header("location: welcome");
             }
