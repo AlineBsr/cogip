@@ -1,34 +1,124 @@
-body {
-  background-color: lightcoral;
-  color: white;
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@700&family=Poppins:wght@100&display=swap");
+html {
+  scroll-behavior: smooth;
 }
-body h1 {
-  text-align: center;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+  font-weight: bold;
+  color: black;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #d4d7de;
+  width: 100%;
+  height: 70px;
+  z-index: 1;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  list-style: none;
+  margin-right: 15%;
+}
+
+.logo {
+  color: #302f2f;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  margin-left: 10%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 35px;
+  font-family: monospace;
+}
+
+img {
+  width: 10%;
 }
 
 a {
+  margin: 15px;
+  color: #000;
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  color: white;
+}
+
+.banner-area {
+  opacity: 50%;
+  margin-left: 700px;
+  position: absolute;
+  background-image: url(./image/logo-cogip.png);
+  width: 40%;
+  height: 40vh;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 footer {
-  text-align: center;
-  border-top: solid white;
-  border-width: thin;
+  color: black;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #9a9c9e;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  height: 70px;
+  z-index: 1;
+  bottom: 0;
 }
 
-header {
-  height: 7rem;
-  width: 100%;
-  background-image: url("image/logo-cogip.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+h3 {
+  font-family: 'Poppins', sans-serif;
 }
-header nav {
-  padding-left: 15rem;
-  font-size: 25px;
+
+.content {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  border: solid black;
+  border-width: 3px;
 }
-header nav ul li {
-  text-decoration: none;
-  display: inline;
-  padding-left: 2rem;
-}
+/*# sourceMappingURL=default.css.map */
