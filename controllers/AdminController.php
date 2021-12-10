@@ -11,7 +11,6 @@
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 header("location: welcome");
             }
-            var_dump($_POST);
             if(isset($_POST["username"])){
                 $username = $_POST["username"];
                 $password = $_POST["password"];

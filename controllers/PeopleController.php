@@ -25,7 +25,6 @@ class PeopleController extends Controller
             echo "Désolé vous n'avez pas les privilèges pour réaliser cette action";
         }
         else{
-
             $this->findModel('People');
             $person = array();
             $colName = ['firstname', 'lastname', 'phone', 'email', 'company_name'];
@@ -81,7 +80,6 @@ class PeopleController extends Controller
             echo "Désolé vous n'avez pas les privilèges pour réaliser cette action";
         }
         else{
-
             $this->findModel('People');
             $person = $this->People->getOne($id);
             $this->People->delete($id);
