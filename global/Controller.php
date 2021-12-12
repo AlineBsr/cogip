@@ -11,8 +11,10 @@
 
             ob_start();
 
-            (PHP_OS == "WINNT") ? require_once(ROOT.'views/'.strtolower(get_class($this)).'/'.$files.'.php') :
-            require_once(ROOT.'views/'.strtolower(get_class($this)).'/'.$files);
+//            (PHP_OS == "WINNT") ?
+ require_once(ROOT.'views/'.strtolower(get_class($this)).'/'.$files.'.php') ;
+//:
+//            require_once(ROOT.'views/'.strtolower(get_class($this)).'/'.$files);
 
             $content = ob_get_clean();
 

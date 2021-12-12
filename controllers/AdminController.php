@@ -7,7 +7,7 @@
 
             $this->findModel('Admin');
             $user = array();
-            $this->render('login.php', ['user' => $user ]);
+            $this->render('login', ['user' => $user ]);
             if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
                 header("location: welcome");
             }
@@ -37,14 +37,14 @@
                 header("location: login");
             }
             $user = $_SESSION["username"];
-            $this->render('welcome.php', ['user' => $user ]);
+            $this->render('welcome', ['user' => $user ]);
         }
 
         public function signIn(){
             $this->findModel('Admin');
             $newUser = array();
             $listeColumn = ['login','password','isAdmin','isMod'];
-            $this->render('signIn.php', ['newUser' => $newUser]);
+            $this->render('signIn', ['newUser' => $newUser]);
             if(isset($_POST["username"])){
                 if($_POST["password"] != $_POST["passwordRep"]){
                     echo "Les mots de passe ne correspondent pas";
@@ -71,7 +71,7 @@
                 $this->checkIfLogged();
                 $this->findModel("Admin");
                 $users = $this->Admin->getAll();
-                $this->render('listUser.php', ['users' => $users]);
+                $this->render('listUser', ['users' => $users]);
             }
         }
 
@@ -84,7 +84,7 @@
                 $this->checkIfLogged();
                 $this->findModel("Admin");
                 $user = $this->Admin->getOne($id);
-                $this->render('privilegeUpdate.php', ['user' => $user]);
+                $this->render('privilegeUpdate', ['user' => $user]);
                 $updateUser = array();
                 $listeColumn = ['isAdmin = ?','isMod = ?'];
                 if(isset($_POST["privilege"])){
@@ -110,7 +110,7 @@
             $this->checkIfLogged();
             $this->findModel('Admin');
             $user = $this->Admin->getOnebyCondition($_SESSION["username"],'login');
-            $this->render('resetPassword.php', ['user' => $user]);
+            $this->render('resetPassword', ['user' => $user]);
             $updateUser = array();
             $listeColumn = ['password = ?'];
             if(isset($_POST['password'])){
@@ -128,7 +128,7 @@
         public function logOut(){
             $this->checkIfLogged();
             $_SESSION = array();
-            $this->render('logout.php',['user' => $_SESSION]);
+            $this->render('logout',['user' => $_SESSION]);
             session_destroy();
             header("location: login");
         }

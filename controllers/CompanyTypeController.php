@@ -8,12 +8,12 @@
             $this->checkIfLogged();
             $this->findModel('CompanyType');
             $companies = $this->CompanyType->getAllClient('company','name');
-            $this->render('listAllClient.php', ['companies' => $companies ]);
+            $this->render('listAllClient', ['companies' => $companies ]);
         }
         public function listAllProvider(){
             $this->checkIfLogged();
             $this->findModel('CompanyType');
             $companies = $this->CompanyType->getAllProvider('company','name');
-            $this->render('listAllProvider.php', ['companies' => $companies ]);
+            $this->render('listAllProvider', ['companies' => $companies ]);
         }
     }
