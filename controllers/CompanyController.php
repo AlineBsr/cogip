@@ -44,7 +44,7 @@
         public function update(int $id){
             $this->checkIfLogged();
             $check = $this->checkPrivilege();
-            if($check != "Admin" || $check != "Mod"){
+            if($check != "Admin" && $check != "Mod"){
                 echo "Désolé vous n'avez pas les privilèges pour réaliser cette action";
             }
             else{
